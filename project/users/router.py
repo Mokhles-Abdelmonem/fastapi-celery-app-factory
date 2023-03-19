@@ -60,3 +60,22 @@ def devide_task(x: int, y: int):
     print("task id: ", task.id)
     print("task task_id: ", task.task_id)
     return {"success":"task successfully started"}
+
+from celery import Celery
+celery_app = Celery(
+    __name__,
+    broker="redis://127.0.0.1:6379/0",
+    backend="redis://127.0.0.1:6379/0"
+)
+
+@users_router.post("/start-periodic-add-task")
+def devide_task(x: int, y: int):
+    celery_app.conf.beat_schedule = {
+        'add-every-5-seconds': {
+            'task': 'tasks.add',
+            'schedule': 30.0,
+            'args': (x, y)
+        },
+    }
+    celery_app.conf.timezone = 'UTC'
+    return {"success":"add periodic task successfully started"}

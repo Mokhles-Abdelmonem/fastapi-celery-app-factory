@@ -3,7 +3,7 @@ from project.celery_worker.celery_utils import celery_app
 
 def create_app() -> FastAPI:
     app = FastAPI()
-    app.celery_app = celery_app() 
+    # app.celery_app = celery_app() 
 
     from project.users.router import users_router
     app.include_router(users_router)
