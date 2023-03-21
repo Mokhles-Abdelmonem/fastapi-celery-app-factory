@@ -1,4 +1,13 @@
 **/__pycache__
+/venv
 /alembic
 alembic.ini
 .env
+### dotenv ###
+.env
+venv
+.idea
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/

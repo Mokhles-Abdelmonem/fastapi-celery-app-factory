@@ -53,7 +53,7 @@ def add_periodic(x, y):
     schedule.every(1).seconds.do(add_contib, x, y)
     while True:
         schedule.run_pending()
-        time.sleep(1)
+        time.sleep(3)
 
 
 from fastapi import APIRouter
